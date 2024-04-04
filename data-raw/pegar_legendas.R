@@ -65,7 +65,7 @@ tab_videos <- rbind(
     )
   ) |>
   dplyr::mutate(
-    podcast_num = as.numeric(stringr::str_extract(video_name, "[0-9]+"))
+    podcast_num = as.numeric(stringr::str_extract(video_name, "#[0-9]+"))
   )
 
 saveRDS(tab_videos, "data-raw/tab_videos_v1.rds")
@@ -97,6 +97,8 @@ for (ep in missing_episodes) {
     get_all = FALSE
   )
 
+  Sys.sleep(1)
+
   tab_missing <- rbind(
     tab_missing,
     res
@@ -104,6 +106,33 @@ for (ep in missing_episodes) {
 
 }
 
+tab_videos_completa <- tab_missing |>
+  tibble::as_tibble() |>
+  dplyr::select(
+    video_name = title,
+    video_id = video_id,
+    video_pub_date = publishedAt
+  ) |>
+  dplyr::distinct() |>
+  dplyr::mutate(
+    podcast_num = as.numeric(stringr::str_extract(video_name, "[0-9]+")),
+  ) |>
+  rbind(tab_videos) |>
+  dplyr::mutate(
+    podcast_tipo = dplyr::case_when(
+      stringr::str_detect(tolower(video_name), "entrevista") ~ "Entrevista",
+      stringr::str_detect(tolower(video_name), "extra") ~ "Extra",
+      TRUE ~ "Regular"
+    ),
+    .before = "podcast_num"
+  ) |>
+  dplyr::arrange(podcast_tipo, podcast_num)
+
+total_episodes[!total_episodes %in% tab_videos_completa$podcast_num]
+
+saveRDS(tab_videos_completa, "data-raw/tab_videos_completa.rds")
+
+# Pegar legenda -----------------------------------------------------------
 
 
 

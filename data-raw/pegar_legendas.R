@@ -134,7 +134,42 @@ saveRDS(tab_videos_completa, "data-raw/tab_videos_completa.rds")
 
 # Pegar legenda -----------------------------------------------------------
 
+tuber::yt_oauth(
+  app_id = Sys.getenv("gcp_app_id"),
+  app_secret = Sys.getenv("gcp_app_secret")
+)
 
+tab_videos_completa <- readRDS("data-raw/tab_videos_completa.rds")
+
+safe_list_caption_tracks <- purrr::possibly(
+  tuber::list_caption_tracks,
+  otherwise = NULL
+)
+
+pegar_id_legenda <- function(video_id) {
+
+  res <- safe_list_caption_tracks(
+    video_id = video_id,
+    language = "pt"
+  )
+
+  Sys.sleep(1)
+
+  if (is.null(res)) {
+    return(NA)
+  } else if (nrow(res) == 0) {
+    return(NA)
+  } else {
+    return(res$id)
+  }
+
+}
+
+legenda_id <- c()
+
+for (video_id in tab_videos_completa$video_id) {
+  legenda_id <- c(legenda_id, pegar_id_legenda(video_id))
+}
 
 
 

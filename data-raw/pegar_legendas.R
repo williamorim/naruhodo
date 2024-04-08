@@ -124,7 +124,9 @@ tab_videos_completa <- tab_missing |>
       stringr::str_detect(tolower(video_name), "extra") ~ "Extra",
       TRUE ~ "Regular"
     ),
-    .before = "podcast_num"
+    .before = "podcast_num",
+    legenda_track_id = NA_character_,
+    legenda = NA_character_
   ) |>
   dplyr::arrange(podcast_tipo, podcast_num)
 
@@ -165,13 +167,19 @@ pegar_id_legenda <- function(video_id) {
 
 }
 
+n <- 1
 legenda_id <- c()
 
-for (video_id in tab_videos_completa$video_id) {
+for (video_id in tab_videos_completa$video_id[n:(n+49)]) {
   legenda_id <- c(legenda_id, pegar_id_legenda(video_id))
 }
 
+tab_videos_completa$legenda_track_id[n:(n+49)] <- legenda_id
 
+saveRDS(tab_videos_completa, "data-raw/tab_videos_completa.rds")
 
-
+teste <- tuber::get_captions(
+  id = tab_videos_completa$legenda_track_id[1],
+  lang = "pt"
+)
 

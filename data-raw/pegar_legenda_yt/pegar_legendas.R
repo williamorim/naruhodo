@@ -197,13 +197,12 @@ tab_legenda <- tab |>
     )
   )
 
-tab_legenda |> dplyr::filter(is.na(legenda))
-
 tab_legenda |>
   dplyr::select(
     video_name,
     video_id,
     video_pub_date,
+    podcast_num,
     podcast_tipo,
     legenda_url,
     legenda_texto = legenda

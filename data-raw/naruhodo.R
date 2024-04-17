@@ -8,4 +8,4 @@ tab_legenda |>
     tab_capas,
     by = c("podcast_tipo", "podcast_num")
   ) |>
-  dplyr::filter(is.na(podcast_img_link)) |> View()
+  readr::write_csv("inst/app/dados_nahurodo.csv")

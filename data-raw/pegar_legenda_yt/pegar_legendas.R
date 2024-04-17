@@ -207,7 +207,7 @@ tab_legenda |>
     legenda_url,
     legenda_texto = legenda
   ) |>
-  saveRDS("data-raw/dados_nahurodo.rds")
+  write.csv("data-raw/pegar_legenda_yt/tab_legendas.rds")
 
 
 

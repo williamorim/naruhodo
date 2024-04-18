@@ -11,4 +11,6 @@ app_server <- function(input, output, session) {
     app_sys("app/dados_nahurodo.csv")
   )
 
+  mod_pag_todos_episodios_server("pag_todos_episodios_1", dados)
+
 }

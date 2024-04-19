@@ -10,13 +10,14 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic
     bslib::page_navbar(
-      title = "Naruhodo",
+      title = "Naruhodo!",
       bslib::nav_panel(
         title = "Todos os episódios",
         mod_pag_todos_episodios_ui("pag_todos_episodios_1")
       ),
       bslib::nav_panel(
-        title = "Procurar episódio"
+        title = "Procurar por termo",
+        mod_pag_procurar_episodio_ui("pag_procurar_episodio_1")
       )
     )
   )

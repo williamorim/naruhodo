@@ -12,5 +12,6 @@ app_server <- function(input, output, session) {
   )
 
   mod_pag_todos_episodios_server("pag_todos_episodios_1", dados)
+  mod_pag_procurar_episodio_server("pag_procurar_episodio_1", dados)
 
 }

@@ -1,0 +1,18 @@
+.bslib-value-box.showcase-left-center .value-box-grid {
+  grid-template-columns: 45% auto;
+}
+
+.narucard {
+  text-decoration: none;
+}
+
+.narucard .value-box-value {
+  font-size: 12px;
+}
+
+
+.form-check-input:checked, .shiny-input-container .checkbox input:checked, .shiny-input-container .checkbox-inline input:checked, .shiny-input-container .radio input:checked, .shiny-input-container .radio-inline input:checked {
+  background-color: #f93d36;
+  border-color: #f93d36;
+}
+

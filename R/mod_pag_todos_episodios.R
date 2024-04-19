@@ -10,13 +10,17 @@
 mod_pag_todos_episodios_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    radioButtons(
-      inputId = ns("tipo"),
-      label = "Tipo do episódio",
-      inline = TRUE,
-      choices = c("Regular", "Entrevista", "Extra")
-    ),
-    reactable::reactableOutput(ns("tabela"))
+    bslib::layout_sidebar(
+      sidebar = bslib::sidebar(
+        radioButtons(
+          inputId = ns("tipo"),
+          label = "Tipo do episódio",
+          choices = c("Regular", "Entrevista", "Extra")
+        )
+      ),
+      h2("Todos os episódios", class = "mb-4"),
+      reactable::reactableOutput(ns("tabela"))
+    )
   )
 }
 

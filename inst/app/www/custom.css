@@ -1,3 +1,7 @@
+:root {
+  --bs-emphasis-color-rgb: white !important;
+}
+
 .bslib-value-box.showcase-left-center .value-box-grid {
   grid-template-columns: 45% auto;
 }
@@ -14,5 +18,10 @@
 .form-check-input:checked, .shiny-input-container .checkbox input:checked, .shiny-input-container .checkbox-inline input:checked, .shiny-input-container .radio input:checked, .shiny-input-container .radio-inline input:checked {
   background-color: #f93d36;
   border-color: #f93d36;
+}
+
+.rt-table a {
+  color: #f93d36;
+  font-weight: bold;
 }
 

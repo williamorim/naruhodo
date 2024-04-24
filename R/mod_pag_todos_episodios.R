@@ -47,7 +47,24 @@ mod_pag_todos_episodios_server <- function(id, dados) {
         ) |>
         reactable::reactable(
           sortable = FALSE,
-          pagination = FALSE,
+          pagination = TRUE,
+          defaultPageSize = 20,
+          language = reactable::reactableLang(
+            searchPlaceholder = "Procurar",
+            searchLabel = "",
+            noData = "Nenhuma informação encontrada",
+            pageNext = "Próxima",
+            pagePrevious = "Anterior",
+            pageNumbers = "{page} de {pages}",
+            pageInfo = "{rowStart}\u2013{rowEnd} de {rows} episódios",
+            pageSizeOptions = "Mostrar {rows}",
+            pageNextLabel = "Próxima página",
+            pagePreviousLabel = "Página anterior",
+            pageNumberLabel = "Página {page}",
+            pageJumpLabel = "Ir para a página",
+            pageSizeOptionsLabel = "Episódios por página",
+            detailsExpandLabel = "Expandir detalhes"
+          ),
           columns = list(
             video_name = reactable::colDef(
               name = "Episódio",
